@@ -126,6 +126,6 @@ def add_item():
             flash('Please fill all fields and upload a valid image.', 'error')
     return render_template('add_item.html')
 
-if __name__ == '__main__':
     init_db()
+if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
