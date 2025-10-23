@@ -8,8 +8,9 @@ app.secret_key = "yoursecretkey"
 app.config['UPLOAD_FOLDER'] = 'static/images'
 app.config['ALLOWED_EXTENSIONS'] = {'jpg', 'jpeg', 'png'}
 
-# Configure SQLite database (changed from MySQL)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shaheen_atier.db'
+# Configure SQLite database with absolute path
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'shaheen_atier.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -69,7 +70,7 @@ def about():
         name = request.form.get('name')
         email = request.form.get('email')
         message = request.form.get('message')
-        flash('Thank you for your message! We'll get back to you soon.', 'success')
+        # flash('Thank you for your message! We'll get back to you soon.', 'success')
     return render_template('about.html')
 
 @app.route('/collection')
@@ -86,7 +87,8 @@ def send_message():
     email = request.form.get('email')
     message = request.form.get('message')
     if name and email and message:
-        flash('Thank you for your message! We'll get back to you soon.', 'success')
+        # flash('Thank you for your message! We'll get back to you soon.', 'success')
+        print("ok")
     else:
         flash('Please fill all fields.', 'error')
     return redirect(url_for('contact'))
