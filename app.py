@@ -8,11 +8,6 @@ app.secret_key = "yoursecretkey"
 app.config['UPLOAD_FOLDER'] = 'static/images'
 app.config['ALLOWED_EXTENSIONS'] = {'jpg', 'jpeg', 'png'}
 
-# Configure MySQL database
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:@localhost/shaheen_atier'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# db = SQLAlchemy(app)
-
 # Configure SQLite database (changed from MySQL)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shaheen_atier.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -33,7 +28,9 @@ def allowed_file(filename):
 def init_db():
     with app.app_context():
         db.create_all()
-        if not Item.query.first():
+        print("Database tables created!")  # Debug log
+        if Item.query.count() == 0:  # Changed from .first()
+            print("Adding initial items...")  # Debug log
             initial_items = [
                 Item(title="Item 1", price="₹100", image="images/img6.jpg", section="Popular Items", description="A classic black Abaya with intricate embroidery, perfect for everyday elegance."),
                 Item(title="Item 2", price="₹150", image="images/img7.jpg", section="Popular Items", description="Lightweight beige Abaya with modern minimalist design."),
@@ -72,7 +69,7 @@ def about():
         name = request.form.get('name')
         email = request.form.get('email')
         message = request.form.get('message')
-        flash('Thank you for your message! We’ll get back to you soon.', 'success')
+        flash('Thank you for your message! We'll get back to you soon.', 'success')
     return render_template('about.html')
 
 @app.route('/collection')
@@ -89,14 +86,14 @@ def send_message():
     email = request.form.get('email')
     message = request.form.get('message')
     if name and email and message:
-        flash('Thank you for your message! We’ll get back to you soon.', 'success')
+        flash('Thank you for your message! We'll get back to you soon.', 'success')
     else:
         flash('Please fill all fields.', 'error')
     return redirect(url_for('contact'))
 
 @app.route('/signIn')
 def signIn():
-    return render_template('signIn.html')  # Placeholder; create signIn.html or remove route if not needed
+    return render_template('signIn.html')
 
 @app.route('/product/<title>')
 def product(title):
@@ -126,6 +123,8 @@ def add_item():
             flash('Please fill all fields and upload a valid image.', 'error')
     return render_template('add_item.html')
 
-    init_db()
+# Initialize database when app starts
+init_db()
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=True)
+    app.run(host='0.0.0.0', debug=True)
