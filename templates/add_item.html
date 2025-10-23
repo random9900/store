@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Add New Item{% endblock %}
+{% block head %}
+<link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+
+<section class="add-item-container">
+    <h2>Add New Item</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="flash-{{ category }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('add_item') }}" method="POST" enctype="multipart/form-data">
+        <label for="title">Title:</label>
+        <input type="text" name="title" placeholder="Item Title" required>
+        <label for="price">Price:</label>
+        <input type="text" name="price" placeholder="Price (e.g., ₹100)" required>
+        <label for="section">Section:</label>
+        <select name="section" required>
+            <option value="Popular Items">Popular Items</option>
+            <option value="New Arrivals">New Arrivals</option>
+            <option value="Best Deals">Best Deals</option>
+        </select>
+        <label for="description">Description:</label>
+        <textarea name="description" placeholder="Product Description" required></textarea>
+        <label for="image">Image:</label>
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">Add Item</button>
+    </form>
+</section>
+
+{% endblock %}
+{% block scripts %}
+{% endblock %}

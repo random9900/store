@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block title %}About Us{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+{% block content %}
+
+<!-- Image Slider -->
+<section class="slider-section">
+    <div class="slider-container">
+        <div class="slides">
+            <div class="slide"><img src="{{ url_for('static', filename='images/img6.jpg') }}" alt="Abaya Collection 1"></div>
+            <div class="slide"><img src="{{ url_for('static', filename='images/img7.jpg') }}" alt="Abaya Collection 2"></div>
+            <div class="slide"><img src="{{ url_for('static', filename='images/img8.jpg') }}" alt="Abaya Collection 3"></div>
+        </div>
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+</section>
+
+<!-- Abaya Store Description -->
+<section class="store-description">
+    <h2>Our Story</h2>
+    <p>At Shaheen Atier, we craft more than just Abayas—we create stories woven with elegance, tradition, and purpose. Established in 2023, our vision was born from a deep love for modest fashion and a desire to honor the cultural legacy of the Abaya. Each garment is a masterpiece, handcrafted by skilled artisans using the finest, ethically sourced fabrics, blending timeless designs with modern flair.</p>
+    <p>Our mission is to empower women to embrace their individuality while staying rooted in heritage. Beyond creating beautiful clothing, we’re committed to sustainability, fair trade, and fostering a global community that celebrates modesty and grace. From casual elegance to intricate designs for life’s special moments, Shaheen Atier is here to make every woman feel radiant, confident, and connected to her story.</p>
+</section>
+
+<!-- Our Impact Section -->
+<section class="impact-section">
+    <h2>Our Impact</h2>
+    <div class="impact-container">
+        <div class="impact-item">
+            <img src="{{ url_for('static', filename='images/img5.jpg') }}" alt="Empowering Artisans">
+            <h3>Empowering Artisans</h3>
+            <p>We partner with local women artisans, providing fair wages and training to preserve traditional craftsmanship and support their livelihoods.</p>
+        </div>
+        <div class="impact-item">
+            <img src="{{ url_for('static', filename='images/img8.jpg') }}" alt="Sustainable Practices">
+            <h3>Sustainable Practices</h3>
+            <p>Using eco-friendly fabrics and low-waste production, we’re dedicated to reducing our environmental footprint while delivering quality.</p>
+        </div>
+        <div class="impact-item">
+            <img src="{{ url_for('static', filename='images/img7.jpg') }}" alt="Cultural Preservation">
+            <h3>Cultural Preservation</h3>
+            <p>We sponsor cultural events and exhibitions to celebrate the Abaya’s heritage, fostering pride and connection in our community.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Our Values Section -->
+<section class="values-section">
+    <h2>Our Core Values</h2>
+    <div class="values-container">
+        <div class="value-item">
+            <h3>Artistry</h3>
+            <p>Each Abaya is a canvas of creativity, crafted with precision to reflect the beauty of tradition and innovation.</p>
+        </div>
+        <div class="value-item">
+            <h3>Sustainability</h3>
+            <p>We champion eco-conscious practices, from biodegradable packaging to responsibly sourced materials, to protect our planet.</p>
+        </div>
+        <div class="value-item">
+            <h3>Empowerment</h3>
+            <p>Our designs inspire women to shine with confidence, celebrating their strength and unique identity.</p>
+        </div>
+        <div class="value-item">
+            <h3>Community</h3>
+            <p>We build connections through shared values, supporting artisans and customers in a global family of modest fashion.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Meet Our Team Section -->
+<section class="team-section">
+    <h2>Meet Our Team</h2>
+    <div class="team-container">
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='images/img5.jpg') }}" alt="Team Member 1">
+            <h3>Aisha Khan</h3>
+            <p>Founder & Designer</p>
+            <p>With a passion for fashion and culture, Aisha curates every collection to reflect elegance and authenticity.</p>
+        </div>
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='images/img6.jpg') }}" alt="Team Member 2">
+            <h3>Sara Ahmed</h3>
+            <p>Creative Director</p>
+            <p>Sara brings innovative designs to life, ensuring every Abaya tells a unique story.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Us Section -->
+<section class="contact-section">
+    <h2>Contact Us</h2>
+    <div class="contact-container">
+        <div class="contact-info">
+            <h3>Get in Touch</h3>
+            <p>Email: <a href="mailto:info@shaheenatier.com">info@shaheenatier.com</a></p>
+            <p>Phone: +123-456-7890</p>
+            <p>Address: 123 Modest Fashion Street, Dubai, UAE</p>
+        </div>
+        <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <p class="flash-{{ category }}">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="{{ url_for('about') }}" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/about.js') }}"></script>
+{% endblock %}

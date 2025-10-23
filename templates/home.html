@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block head %}
+<link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+
+<section class="home-container">
+    <div class="container">
+        {% for section in sections %}
+        <div class="section-wrapper">
+            <h2 class="section-title">{{ section.title }}</h2>
+            <div class="slider-wrapper">
+                <button class="slider-prev" onclick="scrollSlider('{{ section.title | replace(' ', '-') }}-slider', -1)">&#10094;</button>
+                <div class="card-slider" id="{{ section.title | replace(' ', '-') }}-slider">
+                    {% for card in section.cards %}
+                    <div class="card">
+                        <img src="{{ url_for('static', filename=card.image) }}" alt="{{ card.title }}" class="card-image" />
+                        <div class="card-content">
+                            <h3 class="card-title">{{ card.title }}</h3>
+                            <p class="card-price">{{ card.price }}</p>
+                            <a href="{{ url_for('product', title=card.title) }}" class="buy-now">Buy Now</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="slider-next" onclick="scrollSlider('{{ section.title | replace(' ', '-') }}-slider', 1)">&#10095;</button>
+            </div>
+            <a href="{{ url_for('collection') }}?section={{ section.title | replace(' ', '-') }}" class="shop-all">Shop All {{ section.title }}</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}

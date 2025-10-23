@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.slider-section {
+    width: 80%;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    flex: 0 0 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+.store-description, .impact-section, .values-section, .team-section, .contact-section {
+    width: 80%;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.store-description h2, .impact-section h2, .values-section h2, .team-section h2, .contact-section h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.store-description p {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.impact-container, .values-container, .team-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.impact-item, .value-item, .team-member {
+    flex: 1 1 300px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.impact-item img, .team-member img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.impact-item h3, .value-item h3, .team-member h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.impact-item p, .value-item p, .team-member p {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.6;
+}
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.contact-info, .contact-form {
+    flex: 1 1 300px;
+}
+
+.contact-info h3, .contact-form h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.contact-form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.contact-form button {
+    background: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.contact-form button:hover {
+    background: #555;
+}
+
+.flash-success {
+    color: #28a745;
+    margin-bottom: 15px;
+}
+
+.flash-error {
+    color: #dc3545;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .slider-section, .store-description, .impact-section, .values-section, .team-section, .contact-section {
+        width: 90%;
+    }
+    .slide img {
+        height: 300px;
+    }
+    .prev, .next {
+        font-size: 18px;
+        padding: 8px;
+    }
+    .impact-item, .value-item, .team-member {
+        flex: 1 1 100%;
+    }
+}

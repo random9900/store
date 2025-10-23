@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Contact{% endblock %}
+{% block head %}
+<link href="{{ url_for('static', filename='css/contact.css') }}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+<section class="contact-container">
+    <div class="contact-desc-box">
+        <h1>Contact Us</h1>
+        <p>Get In Touch With Us</p>
+    </div>   
+    <div class="contact-form-box">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="flash-{{ category }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('send_message') }}" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" name="name" placeholder="Enter Your Name" required>
+            <br><br>
+            <label for="email">Email:</label>
+            <input type="email" name="email" placeholder="Enter Your Email" required>
+            <br><br>
+            <label for="message">Message:</label>
+            <textarea name="message" placeholder="Type Your Message" required></textarea>
+            <br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>   
+</section>
+
+{% endblock %}
