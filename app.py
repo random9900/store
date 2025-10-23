@@ -70,7 +70,7 @@ def about():
         name = request.form.get('name')
         email = request.form.get('email')
         message = request.form.get('message')
-        # flash('Thank you for your message! We'll get back to you soon.', 'success')
+        
     return render_template('about.html')
 
 @app.route('/collection')
